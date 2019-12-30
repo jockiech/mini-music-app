@@ -15,6 +15,34 @@
         </view>
       </i-cell>
     </i-panel>
+    <i-card>
+      <view slot="content">
+        <view>
+          <view class="bendiziyuan">
+            <text class="iconfont iconbendiziyuan"></text>
+          </view>
+          <text>本地</text>
+        </view>
+        <view>
+          <view class="xiazai">
+            <text class="iconfont iconxiazai"></text>
+          </view>
+          <text>下载</text>
+        </view>
+        <view>
+          <view class="gedan">
+            <text class="iconfont iconSongListgedan"></text>
+          </view>
+          <text>歌单</text>
+        </view>
+        <view>
+          <view class="xihuan">
+            <text class="iconfont iconxihuan"></text>
+          </view>
+          <text>喜欢</text>
+        </view>
+      </view>
+    </i-card>
   </view>
 </template>
 
@@ -23,6 +51,8 @@ import icon from 'iview-mpvue/dist/components/icon/icon'
 import iPanel from 'iview-mpvue/dist/components/panel/panel'
 import iCell from 'iview-mpvue/dist/components/cell/cell'
 import iAvatar from 'iview-mpvue/dist/components/avatar/avatar'
+import iCard from 'iview-mpvue/dist/components/card/card'
+
 export default {
   created () {
     // let app = getApp()
@@ -31,7 +61,8 @@ export default {
     'i-icon': icon,
     'i-panel': iPanel,
     'i-cell': iCell,
-    'i-avatar': iAvatar
+    'i-avatar': iAvatar,
+    'i-card': iCard
   }
 }
 </script>
@@ -41,6 +72,7 @@ export default {
 @import '~iview-mpvue/dist/components/panel/style/panel.css';
 @import '~iview-mpvue/dist/components/cell/style/cell.css';
 @import '~iview-mpvue/dist/components/avatar/style/avatar.css';
+@import '~iview-mpvue/dist/components/card/style/card.css';
 .wrap-box {
   /deep/ .i-panel.top-bar {
     .i-panel-content {
@@ -82,6 +114,73 @@ export default {
           }
         }
       }
+    }
+  }
+  /deep/ .i-card {
+    margin-top: 16px;
+    border: none;
+    box-shadow: 0px 0px 5px 5px rgba(128, 128, 128, 0.1);
+    .i-card-footer {
+      padding: 0;
+    }
+    .i-card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & > view {
+        .bendiziyuan {
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          background: #00c2f0;
+          color: #fff;
+        }
+        .xiazai {
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          background: #ed378c;
+          color: #fff;
+        }
+        .gedan {
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          background: #6357ff;
+          color: #fff;
+        }
+        .xihuan {
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          background: #fd8500;
+          color: #fff;
+        }
+        .iconfont {
+          font-size: 24px;
+        }
+        text {
+          display: block;
+          padding: 8px 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+    .i-card-body::before {
+      border-top-width: 0;
     }
   }
 }
