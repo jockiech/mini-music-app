@@ -7,10 +7,13 @@
     <i-panel i-class="personal-info" hide-top hide-border>
       <i-cell is-link>
         <view>
-          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large"></i-avatar>
+          <i-avatar
+            src="https://i.loli.net/2017/08/21/599a521472424.jpg"
+            size="large"
+          ></i-avatar>
           <view>
-            <p>Sunshine</p>
-            <p>我有孤独和烈酒 你是否愿意跟我走</p>
+            <text>Sunshine</text>
+            <text>我有孤独和烈酒 你是否愿意跟我走</text>
           </view>
         </view>
       </i-cell>
@@ -43,6 +46,36 @@
         </view>
       </view>
     </i-card>
+    <i-collapse>
+      <i-collapse-item title="创建的歌单" name="name1">
+        <div slot="content">
+          <i-cell>
+            <view>
+              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
+              <view>
+                <text class="title">最美电视剧插曲</text>
+                <text class="desc">88首</text>
+              </view>
+            </view>
+            <i-icon type="switch" size="18" />
+          </i-cell>
+        </div>
+      </i-collapse-item>
+      <i-collapse-item title="收藏的歌单" name="name2">
+        <div slot="content">
+          <i-cell>
+            <view>
+              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
+              <view>
+                <text class="title">我喜欢的歌</text>
+                <text class="desc">122首</text>
+              </view>
+            </view>
+            <i-icon type="switch" size="18" />
+          </i-cell>
+        </div>
+      </i-collapse-item>
+    </i-collapse>
   </view>
 </template>
 
@@ -52,6 +85,8 @@ import iPanel from 'iview-mpvue/dist/components/panel/panel'
 import iCell from 'iview-mpvue/dist/components/cell/cell'
 import iAvatar from 'iview-mpvue/dist/components/avatar/avatar'
 import iCard from 'iview-mpvue/dist/components/card/card'
+import iCollapse from 'iview-mpvue/dist/components/collapse/collapse'
+import iCollapseItem from 'iview-mpvue/dist/components/collapse-item/collapse-item'
 
 export default {
   created () {
@@ -62,7 +97,9 @@ export default {
     'i-panel': iPanel,
     'i-cell': iCell,
     'i-avatar': iAvatar,
-    'i-card': iCard
+    'i-card': iCard,
+    'i-collapse': iCollapse,
+    'i-collapse-item': iCollapseItem
   }
 }
 </script>
@@ -73,6 +110,8 @@ export default {
 @import '~iview-mpvue/dist/components/cell/style/cell.css';
 @import '~iview-mpvue/dist/components/avatar/style/avatar.css';
 @import '~iview-mpvue/dist/components/card/style/card.css';
+@import '~iview-mpvue/dist/components/collapse/style/collapse.css';
+@import '~iview-mpvue/dist/components/collapse-item/style/collapse-item.css';
 .wrap-box {
   /deep/ .i-panel.top-bar {
     .i-panel-content {
@@ -107,7 +146,7 @@ export default {
               display: flex;
               flex-direction: column;
               justify-content: space-between;
-              p {
+              text {
                 margin-left: 16px;
               }
             }
@@ -181,6 +220,88 @@ export default {
     }
     .i-card-body::before {
       border-top-width: 0;
+    }
+  }
+  /deep/ .i-collapse {
+    margin-top: 24px;
+    .i-collapse-item {
+      padding: 8px;
+      border-top: none;
+      .i-collapse-item-title-wrap {
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text {
+          -webkit-box-ordinal-group: 1;
+          -moz-box-ordinal-group: 1;
+          -ms-flex-order: 1;
+          -webkit-order: 1;
+          order: 1;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        text:before {
+          content: '';
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 0.5em;
+          width: 2px;
+          height: 1em;
+          background-color: #6357ff;
+          border-radius: 2px;
+        }
+        .i-collapse-item-arrow {
+          -webkit-box-ordinal-group: 2;
+          -moz-box-ordinal-group: 2;
+          -ms-flex-order: 2;
+          -webkit-order: 2;
+          order: 2;
+          transform: rotate(90deg);
+        }
+        .i-collapse-item-arrow-show {
+          -webkit-box-ordinal-group: 2;
+          -moz-box-ordinal-group: 2;
+          -ms-flex-order: 2;
+          -webkit-order: 2;
+          order: 2;
+          transform: rotate(-90deg);
+        }
+      }
+      .i-collapse-item-content {
+        .i-cell {
+          font-size: 14px;
+          .i-cell-bd {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & > view {
+              display: flex;
+              align-items: center;
+              image {
+                width: 40px;
+                height: 40px;
+              }
+              & > view:last-child {
+                height: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text {
+                  margin-left: 16px;
+                }
+                .title {
+                  font-size: 14px;
+                }
+                .desc {
+                  font-size: 12px;
+                  color: #80848f;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
