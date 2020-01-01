@@ -13,7 +13,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const entry = MpvueEntry.getEntry('./src/router/index.js')
+const entry = MpvueEntry.getEntry('./src/config/index.js')
 
 let baseWebpackConfig = {
   // 如果要自定义生成的 dist 目录里面的文件路径，
@@ -25,36 +25,34 @@ let baseWebpackConfig = {
     path: config.build.assetsRoot,
     jsonpFunction: 'webpackJsonpMpvue',
     filename: '[name].js',
-    publicPath:
-      process.env.NODE_ENV === 'production'
-        ? config.build.assetsPublicPath
-        : config.dev.assetsPublicPath,
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       vue: 'mpvue',
-      '@': resolve('src'),
+      axios: 'axios/dist/axios',
+      '@': resolve('src')
     },
     symlinks: false,
     aliasFields: ['mpvue', 'weapp', 'browser'],
-    mainFields: ['browser', 'module', 'main'],
+    mainFields: ['browser', 'module', 'main']
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         options: {
-          formatter: require('eslint-friendly-formatter'),
-        },
+          formatter: require('eslint-friendly-formatter')
+        }
       },
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',
-        options: vueLoaderConfig,
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
@@ -63,66 +61,63 @@ let baseWebpackConfig = {
           'babel-loader',
           {
             loader: 'mpvue-loader',
-            options: Object.assign(
-              {
-                checkMPEntry: true,
+            options: Object.assign({
+                checkMPEntry: true
               },
               vueLoaderConfig
-            ),
-          },
-        ],
+            )
+          }
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[ext]'),
-        },
+          name: utils.assetsPath('img/[name].[ext]')
+        }
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[ext]'),
-        },
+          name: utils.assetsPath('media/[name].[ext]')
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[ext]'),
-        },
+          name: utils.assetsPath('fonts/[name].[ext]')
+        }
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
-      },
-    ],
+        use: ['style-loader', 'css-loader', 'less-loader']
+      }
+    ]
   },
   plugins: [
     // api 统一桥协议方案
     new webpack.DefinePlugin({
       mpvue: 'global.mpvue',
-      mpvuePlatform: 'global.mpvuePlatform',
+      mpvuePlatform: 'global.mpvuePlatform'
     }),
     new MpvuePlugin(),
     new MpvueEntry(),
     new MpvueVendorPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(config.build.assetsRoot, './static'),
-        ignore: ['.*'],
-      },
-    ]),
-  ],
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: path.resolve(config.build.assetsRoot, './static'),
+      ignore: ['.*']
+    }])
+  ]
 }
 
 // 针对百度小程序，由于不支持通过 miniprogramRoot 进行自定义构建完的文件的根路径
@@ -130,20 +125,18 @@ let baseWebpackConfig = {
 // 然后百度开发者工具将 dist/swan 作为项目根目录打
 const projectConfigMap = {
   tt: '../project.config.json',
-  swan: '../project.swan.json',
+  swan: '../project.swan.json'
 }
 
 const PLATFORM = process.env.PLATFORM
 if (/^(swan)|(tt)$/.test(PLATFORM)) {
   baseWebpackConfig = merge(baseWebpackConfig, {
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
-          to: path.resolve(config.build.assetsRoot),
-        },
-      ]),
-    ],
+      new CopyWebpackPlugin([{
+        from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
+        to: path.resolve(config.build.assetsRoot)
+      }])
+    ]
   })
 }
 

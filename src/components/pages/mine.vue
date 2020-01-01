@@ -7,10 +7,7 @@
     <i-panel i-class="personal-info" hide-top hide-border>
       <i-cell is-link>
         <view>
-          <i-avatar
-            src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-            size="large"
-          ></i-avatar>
+          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large"></i-avatar>
           <view>
             <text>Sunshine</text>
             <text>我有孤独和烈酒 你是否愿意跟我走</text>
@@ -51,7 +48,7 @@
         <div slot="content">
           <i-cell>
             <view>
-              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
+              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
               <view>
                 <text class="title">最美电视剧插曲</text>
                 <text class="desc">88首</text>
@@ -65,7 +62,7 @@
         <div slot="content">
           <i-cell>
             <view>
-              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
+              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
               <view>
                 <text class="title">我喜欢的歌</text>
                 <text class="desc">122首</text>
@@ -270,6 +267,7 @@ export default {
       }
       .i-collapse-item-content {
         .i-cell {
+          padding: 12px 0;
           font-size: 14px;
           .i-cell-bd {
             display: flex;

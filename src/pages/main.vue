@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 @import '~iview-mpvue/dist/components/tab-bar/style/tab-bar.css';
 @import '~iview-mpvue/dist/components/tab-bar-item/style/tab-bar-item.css';
 </style>
