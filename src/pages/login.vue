@@ -1,10 +1,13 @@
 <template>
   <view>
     <i-panel>
-      <i-input v-model.lazy="phone"
-               type="text" placeholder="请输入电话号码" />
-      <i-input v-model.lazy="password"
-               type="password" placeholder="请输入密码" />
+      <i-input v-model.lazy="phone" type="text" title="用户名" placeholder="请输入电话号码" />
+      <i-input
+        v-model.lazy="password"
+        type="password"
+        title="密码"
+        placeholder="请输入密码"
+      />
     </i-panel>
   </view>
 </template>
