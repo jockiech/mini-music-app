@@ -1,5 +1,5 @@
 module.exports = {
-  pages: ['pages/login', 'pages/main'],
+  pages: ['pages/login', 'pages/register', 'pages/main'],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',

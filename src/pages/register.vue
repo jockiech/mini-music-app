@@ -3,6 +3,10 @@
     <img mode="widthFix"
          src="../assets/images/logo.png" />
     <i-panel>
+      <i-input v-model.lazy="nickname"
+               type="text"
+               title="🏷️昵称"
+               placeholder="请输入昵称" />
       <i-input v-model.lazy="phone"
                type="number"
                title="📱手机号"
@@ -11,8 +15,12 @@
                type="password"
                title="🔐密码"
                placeholder="请输入密码" />
-      <i-button inline @click="toRegister()">注册</i-button>
-      <i-button type="primary">登录</i-button>
+      <i-input v-model.lazy="captcha"
+               type="number"
+               title="🔑验证码"
+               placeholder="请输入验证码" />
+      <i-button inline @click="toLogin()">返回登录</i-button>
+      <i-button type="primary">注册</i-button>
     </i-panel>
   </view>
 </template>
@@ -23,13 +31,15 @@ import iButton from 'iview-mpvue/dist/components/button/button'
 export default {
   data () {
     return {
+      nickname: '',
       phone: '',
-      password: ''
+      password: '',
+      captcha: ''
     }
   },
   methods: {
-    toRegister () {
-      this.$router.push({ path: '/pages/register' })
+    toLogin () {
+      this.$router.push({ path: '/pages/login' })
     }
   },
   components: {
