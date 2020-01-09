@@ -32,6 +32,7 @@ export default {
 
 <style>
 @import './assets/css/iconfont.css';
+@import './assets/css/main.css';
 .container {
   height: 100%;
   display: flex;
