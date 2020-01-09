@@ -1,7 +1,8 @@
 <template>
   <view>
+    <img src="../assets/image/logo.png" />
     <i-panel>
-      <i-input v-model.lazy="phone" type="text" title="用户名" placeholder="请输入电话号码" />
+      <i-input v-model.lazy="phone" type="text" title="账号" placeholder="请输入手机号码" />
       <i-input
         v-model.lazy="password"
         type="password"
