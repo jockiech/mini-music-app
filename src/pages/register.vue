@@ -9,16 +9,16 @@
         placeholder="请输入昵称"
       />
       <i-input
-        v-model.lazy="phone"
-        type="number"
-        title="📱手机号"
-        placeholder="请输入手机号码"
-      />
-      <i-input
         v-model.lazy="password"
         type="password"
         title="🔐密码"
         placeholder="请输入密码"
+      />
+      <i-input
+        v-model.lazy="phone"
+        type="number"
+        title="📱手机号"
+        placeholder="请输入手机号码"
       />
       <i-input
         v-model.lazy="captcha"
@@ -42,8 +42,8 @@ export default {
   data () {
     return {
       nickname: '',
-      phone: '',
       password: '',
+      phone: '',
       captcha: ''
     }
   },

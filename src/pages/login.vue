@@ -3,19 +3,21 @@
     <img mode="widthFix" src="../assets/images/logo.png" />
     <i-panel>
       <i-input
-        v-model.lazy="phone"
+        :value="phone"
+        @blur="(event) => { phone = event.target.value }"
         type="number"
         title="📱手机号"
         placeholder="请输入手机号码"
       />
       <i-input
-        v-model.lazy="password"
+        :value="password"
+        @blur="(event) => { password = event.target.value }"
         type="password"
         title="🔐密码"
         placeholder="请输入密码"
       />
       <i-button inline @click="toRegister()">注册</i-button>
-      <i-button type="primary">登录</i-button>
+      <i-button type="primary" @click="loginSubmit">登录</i-button>
     </i-panel>
   </view>
 </template>
@@ -23,14 +25,26 @@
 <script>
 import iInput from 'iview-mpvue/dist/components/input/input'
 import iButton from 'iview-mpvue/dist/components/button/button'
+import loginApi from '@/api/login'
 export default {
   data () {
     return {
-      phone: '',
-      password: ''
+      phone: null,
+      password: null
     }
   },
   methods: {
+    loginSubmit () {
+      const _self = this
+      loginApi.login({
+        phone: _self.phone,
+        password: _self.password
+      }).then(response => {
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     toRegister () {
       this.$router.push({ path: '/pages/register' })
     }
