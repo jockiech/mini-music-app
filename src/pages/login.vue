@@ -1,16 +1,19 @@
 <template>
   <view class="wrap-box">
-    <img mode="widthFix"
-         src="../assets/images/logo.png" />
+    <img mode="widthFix" src="../assets/images/logo.png" />
     <i-panel>
-      <i-input v-model.lazy="phone"
-               type="number"
-               title="📱手机号"
-               placeholder="请输入手机号码" />
-      <i-input v-model.lazy="password"
-               type="password"
-               title="🔐密码"
-               placeholder="请输入密码" />
+      <i-input
+        v-model.lazy="phone"
+        type="number"
+        title="📱手机号"
+        placeholder="请输入手机号码"
+      />
+      <i-input
+        v-model.lazy="password"
+        type="password"
+        title="🔐密码"
+        placeholder="请输入密码"
+      />
       <i-button inline @click="toRegister()">注册</i-button>
       <i-button type="primary">登录</i-button>
     </i-panel>

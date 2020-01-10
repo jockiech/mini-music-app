@@ -1,31 +1,41 @@
 <template>
   <view class="wrap-box">
-    <img mode="widthFix"
-         src="../assets/images/logo.png" />
+    <img mode="widthFix" src="../assets/images/logo.png" />
     <i-panel>
-      <i-input v-model.lazy="nickname"
-               type="text"
-               title="🏷️昵称"
-               placeholder="请输入昵称" />
-      <i-input v-model.lazy="phone"
-               type="number"
-               title="📱手机号"
-               placeholder="请输入手机号码" />
-      <i-input v-model.lazy="password"
-               type="password"
-               title="🔐密码"
-               placeholder="请输入密码" />
-      <i-input v-model.lazy="captcha"
-               type="number"
-               title="🔑验证码"
-               placeholder="请输入验证码" />
-      <i-button inline @click="toLogin()">返回登录</i-button>
+      <i-input
+        v-model.lazy="nickname"
+        type="text"
+        title="🏷️昵称"
+        placeholder="请输入昵称"
+      />
+      <i-input
+        v-model.lazy="phone"
+        type="number"
+        title="📱手机号"
+        placeholder="请输入手机号码"
+      />
+      <i-input
+        v-model.lazy="password"
+        type="password"
+        title="🔐密码"
+        placeholder="请输入密码"
+      />
+      <i-input
+        v-model.lazy="captcha"
+        type="number"
+        title="🔑验证码"
+        placeholder="请输入验证码"
+      />
+      <i-button inline @click="toLogin()">
+        <i-icon type="return" />返回登录
+      </i-button>
       <i-button type="primary">注册</i-button>
     </i-panel>
   </view>
 </template>
 
 <script>
+import icon from 'iview-mpvue/dist/components/icon/icon'
 import iInput from 'iview-mpvue/dist/components/input/input'
 import iButton from 'iview-mpvue/dist/components/button/button'
 export default {
@@ -43,6 +53,7 @@ export default {
     }
   },
   components: {
+    'i-icon': icon,
     'i-input': iInput,
     'i-button': iButton
   }
@@ -50,6 +61,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '~iview-mpvue/dist/components/icon/style/icon.css';
 @import '~iview-mpvue/dist/components/input/style/input.css';
 @import '~iview-mpvue/dist/components/button/style/button.css';
 @import '../assets/css/form.css';
