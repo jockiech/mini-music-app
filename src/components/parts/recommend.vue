@@ -1,8 +1,8 @@
 <template>
   <view class="wrap-box">
-    <swiper circular="true" skip-hidden-item-layout="true">
-      <swiper-item v-for="(item,index) in albums" :key="index">
-        <img mode="aspectFill" :src="item.picUrl" />
+    <swiper indicator-dots="true" circular="true" skip-hidden-item-layout="true">
+      <swiper-item v-for="(item, index) in albums" :key="index">
+        <img mode="aspectFill" :src="item.picUrl" @click="getAlbumDetail(item.id)" />
       </swiper-item>
     </swiper>
   </view>
@@ -26,11 +26,18 @@ export default {
         .fetchNewestAlbums()
         .then(response => {
           _self.albums = response.data.albums
-          console.log(_self.albums)
         })
         .catch(error => {
           console.error(error)
         })
+    },
+    getAlbumDetail (id) {
+      // const _self = this
+      recommendApi.fetchAlbumDetail({id}).then(response => {
+        console.log(response)
+      }).then(error => {
+        console.error(error)
+      })
     }
   }
 }
