@@ -5,12 +5,16 @@
       <view>首页</view>
       <i-icon type="search" size="20" />
     </i-panel>
-    <i-tabs color="#5c90ff" v-model="current">
+    <i-tabs color="#609344" v-model="current">
       <i-tab item-key="recommend" title="推荐"></i-tab>
       <i-tab item-key="songsheet" title="歌单"></i-tab>
-      <i-tab item-key="category" title="分类"></i-tab>
+      <i-tab item-key="catelist" title="分类"></i-tab>
       <i-tab item-key="ranklist" title="排行榜"></i-tab>
     </i-tabs>
+    <recommend v-if="current === 'recommend'" />
+    <songsheet v-else-if="current === 'songsheet'" />
+    <catelist v-else-if="current === 'catelist'" />
+    <ranklist v-else-if="current === 'ranklist'" />
   </view>
 </template>
 
@@ -19,6 +23,10 @@ import icon from 'iview-mpvue/dist/components/icon/icon'
 import iPanel from 'iview-mpvue/dist/components/panel/panel'
 import iTabs from 'iview-mpvue/dist/components/tabs/tabs'
 import iTab from 'iview-mpvue/dist/components/tab/tab'
+import recommend from '@/components/parts/recommend'
+import songsheet from '@/components/parts/songsheet'
+import catelist from '@/components/parts/catelist'
+import ranklist from '@/components/parts/ranklist'
 export default {
   data () {
     return {
@@ -29,6 +37,10 @@ export default {
     // let app = getApp()
   },
   components: {
+    recommend,
+    songsheet,
+    catelist,
+    ranklist,
     'i-icon': icon,
     'i-panel': iPanel,
     'i-tabs': iTabs,
@@ -51,8 +63,17 @@ export default {
       padding: 0 10px;
       height: 40px;
       font-size: 16px;
-      background-color: #5c90ff;
+      background-color: #609344;
       color: #fff;
+    }
+  }
+  /deep/ .i-tabs {
+    .i-tabs-tab-current {
+      .i-tabs-tab-content {
+        .i-tabs-tab-title-current {
+          color: #609344;
+        }
+      }
     }
   }
 }

@@ -16,7 +16,6 @@
         title="🔐密码"
         placeholder="请输入密码"
       />
-      <i-button inline @click="toRegister()">注册</i-button>
       <i-button type="primary" @click="loginSubmit">登录</i-button>
     </i-panel>
   </view>
@@ -29,8 +28,8 @@ import loginApi from '@/api/login'
 export default {
   data () {
     return {
-      phone: null,
-      password: null
+      phone: '15982824650',
+      password: 'cyz199112121610'
     }
   },
   methods: {
@@ -40,13 +39,10 @@ export default {
         phone: _self.phone,
         password: _self.password
       }).then(response => {
-        console.log(response)
+        _self.$router.push({ path: '/pages/main' })
       }).catch(error => {
-        console.log(error)
+        console.error(error)
       })
-    },
-    toRegister () {
-      this.$router.push({ path: '/pages/register' })
     }
   },
   components: {
@@ -84,19 +80,7 @@ export default {
         color: #609344;
       }
     }
-    .i-btn-inline {
-      float: right;
-      margin: 5px 25px 10px !important;
-      box-shadow: none !important;
-      border: none !important;
-      padding: 0 !important;
-      height: auto;
-      line-height: normal;
-      background-color: transparent !important;
-      color: #609344 !important;
-    }
-    .i-btn:not(.i-btn-inline) {
-      clear: both;
+    .i-btn {
       margin: 25px;
       background-color: #609344 !important;
     }

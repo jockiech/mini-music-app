@@ -34,7 +34,7 @@ export default {
       padding: 0 10px;
       height: 40px;
       font-size: 16px;
-      background-color: #5c90ff;
+      background-color: #609344;
       color: #fff;
       & > view:not(.i-icon) {
         position: absolute;

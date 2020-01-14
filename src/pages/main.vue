@@ -5,7 +5,7 @@
       <category v-else-if="current === 'category'" />
       <mine v-else-if="current === 'mine'" />
     </page>
-    <i-tab-bar v-model="current" color="#5c90ff" fixed>
+    <i-tab-bar v-model="current" color="#609344" fixed>
       <i-tab-bar-item item-key="home" icon="homepage" current-icon="homepage_fill" title="首页" />
       <i-tab-bar-item item-key="category" icon="createtask" current-icon="createtask_fill" title="分类" />
       <i-tab-bar-item item-key="mine" icon="mine" current-icon="mine_fill" title="我的" />

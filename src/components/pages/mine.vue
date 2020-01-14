@@ -119,7 +119,7 @@ export default {
       padding: 0 10px;
       height: 40px;
       font-size: 16px;
-      background-color: #5c90ff;
+      background-color: #609344;;
       color: #fff;
       & > view:not(.i-icon) {
         position: absolute;
@@ -133,7 +133,7 @@ export default {
       .i-cell {
         height: 80px;
         font-size: 16px;
-        background-color: #5c90ff;
+        background-color: #609344;
         color: #fff;
         .i-cell-bd {
           & > view {
@@ -245,7 +245,7 @@ export default {
           margin-right: 0.5em;
           width: 2px;
           height: 1em;
-          background-color: #6357ff;
+          background-color: #609344;
           border-radius: 2px;
         }
         .i-collapse-item-arrow {
