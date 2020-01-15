@@ -4,14 +4,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/pages/register'
-  },
-  {
     path: '/pages/login'
   },
   {
     path: '/pages/main'
     // isTab: true // 标志当前路由是一个 Tab
+  },
+  {
+    path: '/pages/player'
   }
 ]
 

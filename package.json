@@ -27,6 +27,7 @@
     "axios": "^0.19.0",
     "iview-mpvue": "^1.0.6",
     "mpvue": "^2.0.6",
+    "mpvue-audio": "^1.0.5",
     "mpvue-router-patch": "^2.0.0",
     "mpvue-wxparse": "^0.6.5",
     "qs": "^6.9.1",

@@ -1,8 +1,13 @@
 <template>
   <view class="wrap-box">
-    <swiper indicator-dots="true" circular="true" skip-hidden-item-layout="true">
-      <swiper-item v-for="(item, index) in albums" :key="index">
-        <img mode="aspectFill" :src="item.picUrl" @click="getAlbumDetail(item.id)" />
+    <swiper indicator-dots="true"
+            circular="true"
+            skip-hidden-item-layout="true">
+      <swiper-item v-for="(item, index) in albums"
+                   :key="index">
+        <img mode="aspectFill"
+             :src="item.picUrl"
+             @click="getAlbumDetail(item.id)" />
       </swiper-item>
     </swiper>
   </view>
@@ -32,12 +37,24 @@ export default {
         })
     },
     getAlbumDetail (id) {
-      // const _self = this
-      recommendApi.fetchAlbumDetail({id}).then(response => {
-        console.log(response)
-      }).then(error => {
-        console.error(error)
-      })
+      const _self = this
+      recommendApi
+        .fetchAlbumDetail({ id })
+        .then(response => {
+          if (response.data.songs && response.data.songs.length) {
+            _self.$router.push({
+              path: '/pages/player',
+              query: {
+                id: response.data.songs[0].id,
+                name: response.data.songs[0].name,
+                picUrl: encodeURIComponent(response.data.songs[0].al.picUrl)
+              }
+            })
+          }
+        })
+        .then(error => {
+          console.error(error)
+        })
     }
   }
 }
