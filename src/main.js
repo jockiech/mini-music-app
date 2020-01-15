@@ -2,7 +2,11 @@ import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
 import router from './router'
+import store from './store'
 import App from './App'
+
+// 使得小程序具有web浏览器的cookie存储能力及相关机制
+import 'weapp-cookie'
 
 // import VueRouter from 'mpvue-router-patch'
 // Vue.use(VueRouter)
@@ -31,11 +35,11 @@ axios.defaults.adapter = function (config) {
       url: config.url,
       method: config.method,
       data: data,
-      success: res => {
-        return resolve(res)
+      success: response => {
+        return resolve(response)
       },
-      fail: err => {
-        return reject(err)
+      fail: error => {
+        return reject(error)
       }
     })
   })
@@ -63,6 +67,7 @@ axios.interceptors.response.use(
 
 Vue.axios = axios
 Vue.prototype.$axios = axios
+Vue.prototype.$store = store
 
 Vue.config.productionTip = false
 App.mpType = 'app'

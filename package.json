@@ -33,7 +33,8 @@
     "qs": "^6.9.1",
     "vue-router-mp": "^0.2.3",
     "vuex": "^3.1.0",
-    "we-cropper": "^1.3.5"
+    "we-cropper": "^1.3.5",
+    "weapp-cookie": "^1.4.6"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.1",

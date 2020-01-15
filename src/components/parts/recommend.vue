@@ -1,13 +1,16 @@
 <template>
   <view class="wrap-box">
-    <swiper indicator-dots="true"
-            circular="true"
-            skip-hidden-item-layout="true">
-      <swiper-item v-for="(item, index) in albums"
-                   :key="index">
-        <img mode="aspectFill"
-             :src="item.picUrl"
-             @click="getAlbumDetail(item.id)" />
+    <swiper
+      indicator-dots="true"
+      circular="true"
+      skip-hidden-item-layout="true"
+    >
+      <swiper-item v-for="(item, index) in albums" :key="index">
+        <img
+          mode="aspectFill"
+          :src="item.picUrl"
+          @click="getAlbumDetail(item.id)"
+        />
       </swiper-item>
     </swiper>
   </view>

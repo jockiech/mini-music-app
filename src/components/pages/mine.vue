@@ -7,10 +7,10 @@
     <i-panel i-class="personal-info" hide-top hide-border>
       <i-cell is-link>
         <view>
-          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large"></i-avatar>
+          <i-avatar :src="userMeta.avatarUrl" size="large"></i-avatar>
           <view>
-            <text>Sunshine</text>
-            <text>我有孤独和烈酒 你是否愿意跟我走</text>
+            <text>{{ userMeta }}</text>
+            <text>{{ userMeta }}</text>
           </view>
         </view>
       </i-cell>
@@ -84,10 +84,11 @@ import iAvatar from 'iview-mpvue/dist/components/avatar/avatar'
 import iCard from 'iview-mpvue/dist/components/card/card'
 import iCollapse from 'iview-mpvue/dist/components/collapse/collapse'
 import iCollapseItem from 'iview-mpvue/dist/components/collapse-item/collapse-item'
+import { mapGetters } from 'vuex'
 
 export default {
-  created () {
-    // let app = getApp()
+  computed: {
+    ...mapGetters(['userMeta'])
   },
   components: {
     'i-icon': icon,

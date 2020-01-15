@@ -26,7 +26,6 @@ export default {
       current: 'home'
     }
   },
-
   components: {
     home,
     category,

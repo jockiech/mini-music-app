@@ -39,6 +39,8 @@ export default {
         phone: _self.phone,
         password: _self.password
       }).then(response => {
+        _self.$store.commit('setToken', response.data.token)
+        _self.$store.commit('setUserMeta', response.data.profile)
         _self.$router.push({ path: '/pages/main' })
       }).catch(error => {
         console.error(error)

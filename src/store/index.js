@@ -7,16 +7,21 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    token: wx.getStorageSync('token'),
+    userMeta: wx.getStorageSync('userMeta')
+  },
+  getters: {
+    token: state => state.token,
+    userMeta: state => state.userMeta
   },
   mutations: {
-    increment: state => {
-      const obj = state
-      obj.count += 1
+    setToken: (state, data) => {
+      state.token = data
+      wx.setStorageSync('token', data)
     },
-    decrement: state => {
-      const obj = state
-      obj.count -= 1
+    setUserMeta: (state, data) => {
+      state.user = data
+      wx.setStorageSync('userMeta', data)
     }
   }
 })
