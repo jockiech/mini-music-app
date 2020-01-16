@@ -1,20 +1,27 @@
 <template>
   <view class="wrap-box">
-    <i-panel i-class="top-bar" hide-top hide-border>
-      <view>个人中心</view>
-      <i-icon type="remind_fill" size="18" />
-    </i-panel>
-    <i-panel i-class="personal-info" hide-top hide-border>
-      <i-cell is-link>
-        <view>
-          <i-avatar :src="userMeta.avatarUrl" size="large"></i-avatar>
+    <view
+      class="person-wrap"
+      :style="{
+        backgroundImage: bgStyle
+      }"
+    >
+      <i-panel i-class="top-bar" hide-top hide-border>
+        <view>个人中心</view>
+        <i-icon type="remind_fill" size="18" />
+      </i-panel>
+      <i-panel i-class="personal-info" hide-top hide-border>
+        <i-cell is-link>
           <view>
-            <text>{{ userMeta }}</text>
-            <text>{{ userMeta }}</text>
+            <i-avatar :src="userMeta.avatarUrl" size="large"></i-avatar>
+            <view>
+              <text>{{ userMeta }}</text>
+              <text>{{ userMeta }}</text>
+            </view>
           </view>
-        </view>
-      </i-cell>
-    </i-panel>
+        </i-cell>
+      </i-panel>
+    </view>
     <i-card>
       <view slot="content">
         <view>
@@ -88,7 +95,10 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['userMeta'])
+    ...mapGetters(['userMeta']),
+    bgStyle() {
+      return `url(${this.userMeta.backgroundUrl})`
+    }
   },
   components: {
     'i-icon': icon,
@@ -111,41 +121,45 @@ export default {
 @import '~iview-mpvue/dist/components/collapse/style/collapse.css';
 @import '~iview-mpvue/dist/components/collapse-item/style/collapse-item.css';
 .wrap-box {
-  /deep/ .i-panel.top-bar {
-    .i-panel-content {
-      position: relative;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 10px;
-      height: 40px;
-      font-size: 16px;
-      background-color: #609344;;
-      color: #fff;
-      & > view:not(.i-icon) {
-        position: absolute;
-        width: calc(100% - 20px);
-        text-align: center;
+  .person-wrap {
+    background-size: cover;
+    width: 100%;
+    /deep/ .i-panel.top-bar {
+      .i-panel-content {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 10px;
+        height: 40px;
+        font-size: 16px;
+        // background-color: #609344;
+        color: #fff;
+        & > view:not(.i-icon) {
+          position: absolute;
+          width: calc(100% - 20px);
+          text-align: center;
+        }
       }
     }
-  }
-  /deep/ .i-panel.personal-info {
-    .i-panel-content {
-      .i-cell {
-        height: 80px;
-        font-size: 16px;
-        background-color: #609344;
-        color: #fff;
-        .i-cell-bd {
-          & > view {
-            display: flex;
-            align-items: center;
-            & > view:last-child {
+    /deep/ .i-panel.personal-info {
+      .i-panel-content {
+        .i-cell {
+          height: 80px;
+          font-size: 16px;
+          // background-color: #609344;
+          color: #fff;
+          .i-cell-bd {
+            & > view {
               display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              text {
-                margin-left: 16px;
+              align-items: center;
+              & > view:last-child {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text {
+                  margin-left: 16px;
+                }
               }
             }
           }

@@ -25,8 +25,10 @@ let baseWebpackConfig = {
     path: config.build.assetsRoot,
     jsonpFunction: 'webpackJsonpMpvue',
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production' ?
-      config.build.assetsPublicPath : config.dev.assetsPublicPath
+    publicPath:
+      process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -40,14 +42,15 @@ let baseWebpackConfig = {
     mainFields: ['browser', 'module', 'main']
   },
   module: {
-    rules: [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
+    rules: [
+      {
+        // test: /\.(js|vue)$/,
+        // loader: 'eslint-loader',
+        // enforce: 'pre',
+        // include: [resolve('src'), resolve('test')],
+        // options: {
+        //   formatter: require('eslint-friendly-formatter')
+        // }
       },
       {
         test: /\.vue$/,
@@ -61,7 +64,8 @@ let baseWebpackConfig = {
           'babel-loader',
           {
             loader: 'mpvue-loader',
-            options: Object.assign({
+            options: Object.assign(
+              {
                 checkMPEntry: true
               },
               vueLoaderConfig
@@ -112,11 +116,13 @@ let baseWebpackConfig = {
     new MpvuePlugin(),
     new MpvueEntry(),
     new MpvueVendorPlugin(),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '../static'),
-      to: path.resolve(config.build.assetsRoot, './static'),
-      ignore: ['.*']
-    }])
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.resolve(config.build.assetsRoot, './static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 }
 
@@ -132,10 +138,12 @@ const PLATFORM = process.env.PLATFORM
 if (/^(swan)|(tt)$/.test(PLATFORM)) {
   baseWebpackConfig = merge(baseWebpackConfig, {
     plugins: [
-      new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
-        to: path.resolve(config.build.assetsRoot)
-      }])
+      new CopyWebpackPlugin([
+        {
+          from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
+          to: path.resolve(config.build.assetsRoot)
+        }
+      ])
     ]
   })
 }
