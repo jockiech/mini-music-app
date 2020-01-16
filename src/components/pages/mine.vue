@@ -7,18 +7,15 @@
       }"
     >
       <i-panel i-class="top-bar" hide-top hide-border>
-        <view>个人中心</view>
+        <view>
+          <text>个人中心</text>
+        </view>
         <i-icon type="remind_fill" size="18" />
       </i-panel>
       <i-panel i-class="personal-info" hide-top hide-border>
-        <i-cell is-link>
-          <view>
-            <i-avatar :src="userMeta.avatarUrl" size="large"></i-avatar>
-            <view>
-              <text>{{ userMeta }}</text>
-              <text>{{ userMeta }}</text>
-            </view>
-          </view>
+        <i-avatar :src="userMeta.avatarUrl" size="large" />
+        <i-cell :title="userMeta.nickname" :label="userMeta.signature" is-link />
+          <!-- <i-avatar slot="icon" :src="userMeta.avatarUrl" size="large" /> -->
         </i-cell>
       </i-panel>
     </view>
@@ -51,21 +48,23 @@
       </view>
     </i-card>
     <i-collapse>
-      <i-collapse-item title="创建的歌单" name="name1">
+      <i-collapse-item title="创建的歌单" name="new">
         <div slot="content">
-          <i-cell>
-            <view>
-              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+          <i-cell-group>
+            <i-cell>
               <view>
-                <text class="title">最美电视剧插曲</text>
-                <text class="desc">88首</text>
+                <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                <view>
+                  <text class="title">最美电视剧插曲</text>
+                  <text class="desc">88首</text>
+                </view>
               </view>
-            </view>
-            <i-icon type="switch" size="18" />
-          </i-cell>
+              <i-icon type="switch" size="18" />
+            </i-cell>
+          </i-cell-group>
         </div>
       </i-collapse-item>
-      <i-collapse-item title="收藏的歌单" name="name2">
+      <i-collapse-item title="收藏的歌单" name="star">
         <div slot="content">
           <i-cell>
             <view>
@@ -92,12 +91,36 @@ import iCard from 'iview-mpvue/dist/components/card/card'
 import iCollapse from 'iview-mpvue/dist/components/collapse/collapse'
 import iCollapseItem from 'iview-mpvue/dist/components/collapse-item/collapse-item'
 import { mapGetters } from 'vuex'
+import userApi from '@/api/user'
 
 export default {
+  data () {
+    return {
+      playStarList: [],
+      playNewList: []
+    }
+  },
+  created () {
+    this.getPlayList()
+  },
   computed: {
     ...mapGetters(['userMeta']),
-    bgStyle() {
+    bgStyle () {
       return `url(${this.userMeta.backgroundUrl})`
+    }
+  },
+  methods: {
+    getPlayList () {
+      const _self = this
+      userApi.fetchUserPlaylist({
+        uid: _self.userMeta.userId
+      }).then(response => {
+        _self.playStarList = response.data.playlist.filter(item => item.subscribed)
+        _self.playNewList = response.data.playlist.filter(item => !item.subscribed)
+        console.log(_self.playStarList, _self.playNewList)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   components: {
@@ -133,7 +156,7 @@ export default {
         padding: 0 10px;
         height: 40px;
         font-size: 16px;
-        // background-color: #609344;
+        background: #609344;
         color: #fff;
         & > view:not(.i-icon) {
           position: absolute;
@@ -144,11 +167,18 @@ export default {
     }
     /deep/ .i-panel.personal-info {
       .i-panel-content {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        background: transparent;
         .i-cell {
+          padding: 0;
+          padding-left: 15px;
           height: 80px;
           font-size: 16px;
-          // background-color: #609344;
           color: #fff;
+          background: transparent;
+          flex: auto;
           .i-cell-bd {
             & > view {
               display: flex;
