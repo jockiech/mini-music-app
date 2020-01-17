@@ -50,32 +50,12 @@
     <i-collapse>
       <i-collapse-item title="创建的歌单" name="new">
         <div slot="content">
-          <i-cell-group>
-            <i-cell>
-              <view>
-                <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
-                <view>
-                  <text class="title">最美电视剧插曲</text>
-                  <text class="desc">88首</text>
-                </view>
-              </view>
-              <i-icon type="switch" size="18" />
-            </i-cell>
-          </i-cell-group>
+          <songlist :list="playNewList" />
         </div>
       </i-collapse-item>
       <i-collapse-item title="收藏的歌单" name="star">
         <div slot="content">
-          <i-cell>
-            <view>
-              <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
-              <view>
-                <text class="title">我喜欢的歌</text>
-                <text class="desc">122首</text>
-              </view>
-            </view>
-            <i-icon type="switch" size="18" />
-          </i-cell>
+          <songlist :list="playStarList" />
         </div>
       </i-collapse-item>
     </i-collapse>
@@ -90,6 +70,7 @@ import iAvatar from 'iview-mpvue/dist/components/avatar/avatar'
 import iCard from 'iview-mpvue/dist/components/card/card'
 import iCollapse from 'iview-mpvue/dist/components/collapse/collapse'
 import iCollapseItem from 'iview-mpvue/dist/components/collapse-item/collapse-item'
+import songlist from '@/components/parts/songlist'
 import { mapGetters } from 'vuex'
 import userApi from '@/api/user'
 
@@ -124,6 +105,7 @@ export default {
     }
   },
   components: {
+    songlist,
     'i-icon': icon,
     'i-panel': iPanel,
     'i-cell': iCell,
@@ -308,41 +290,6 @@ export default {
           -webkit-order: 2;
           order: 2;
           transform: rotate(-90deg);
-        }
-      }
-      .i-collapse-item-content {
-        .i-cell {
-          padding: 12px 0;
-          font-size: 14px;
-          .i-cell-bd {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            & > view {
-              display: flex;
-              align-items: center;
-              image {
-                width: 40px;
-                height: 40px;
-              }
-              & > view:last-child {
-                height: 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                text {
-                  margin-left: 16px;
-                }
-                .title {
-                  font-size: 14px;
-                }
-                .desc {
-                  font-size: 12px;
-                  color: #80848f;
-                }
-              }
-            }
-          }
         }
       }
     }
