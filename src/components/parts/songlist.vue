@@ -46,11 +46,15 @@ export default {
     width: 40px;
     height: 40px;
   }
-  .i-cell {
-    padding: 12px 0;
+  /deep/ .i-cell {
+    display: flex;
+    align-items: center;
+    flex: auto;
+    padding: 12px;
     font-size: 14px;
     .i-cell-bd {
       .i-cell-text {
+        line-height: normal;
         font-size: 14px;
       }
       .i-cell-desc {
@@ -58,7 +62,7 @@ export default {
       }
     }
   }
-  .i-cell::after {
+  /deep/ .i-cell::after {
     border: none;
   }
 }

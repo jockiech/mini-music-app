@@ -14,7 +14,7 @@
       </i-panel>
       <i-panel i-class="personal-info" hide-top hide-border>
         <i-avatar :src="userMeta.avatarUrl" size="large" />
-        <i-cell :title="userMeta.nickname" :label="userMeta.signature" is-link />
+        <i-cell :title="userMeta.nickname" :label="userMeta.signature" is-link>
           <!-- <i-avatar slot="icon" :src="userMeta.avatarUrl" size="large" /> -->
         </i-cell>
       </i-panel>
@@ -93,15 +93,21 @@ export default {
   methods: {
     getPlayList () {
       const _self = this
-      userApi.fetchUserPlaylist({
-        uid: _self.userMeta.userId
-      }).then(response => {
-        _self.playStarList = response.data.playlist.filter(item => item.subscribed)
-        _self.playNewList = response.data.playlist.filter(item => !item.subscribed)
-        console.log(_self.playStarList, _self.playNewList)
-      }).catch(error => {
-        console.log(error)
-      })
+      userApi
+        .fetchUserPlaylist({
+          uid: _self.userMeta.userId
+        })
+        .then(response => {
+          _self.playStarList = response.data.playlist.filter(
+            item => item.subscribed
+          )
+          _self.playNewList = response.data.playlist.filter(
+            item => !item.subscribed
+          )
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   components: {
@@ -190,6 +196,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 16px;
       & > view {
         .bendiziyuan {
           border-radius: 50%;
