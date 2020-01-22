@@ -4,7 +4,7 @@
       <i-card
         :thumb="item.coverImgUrl"
         :title="item.name"
-        :extra="`🎧${item.playCount.toLocaleString()}`"
+        :extra="`🎧\n${item.playCount.toLocaleString()}`"
       >
         <!-- <view slot="content">
           <text :key="key" v-for="(track, key) in item.tracks">
@@ -23,7 +23,7 @@
 
 <script>
 import iCard from 'iview-mpvue/dist/components/card/card'
-import topApi from '@/api/topcatelist'
+import songApi from '@/api/song'
 export default {
   data () {
     return {
@@ -36,8 +36,8 @@ export default {
   methods: {
     getTopList () {
       const _self = this
-      topApi
-        .fetchToplist()
+      songApi
+        .fetchTopDetailList()
         .then(response => {
           _self.topList = response.data.list
         })
@@ -73,8 +73,8 @@ export default {
         font-size: 12px;
       }
       .i-card-header-extra {
-        flex: 0.5;
         font-size: 12px;
+        white-space: pre-line;
       }
     }
     .i-card-body {

@@ -54,7 +54,7 @@
 
 <script>
 import iCard from 'iview-mpvue/dist/components/card/card'
-import recommendApi from '@/api/recommend'
+import songApi from '@/api/song'
 export default {
   data () {
     return {
@@ -67,7 +67,7 @@ export default {
   methods: {
     getNewestAlbums () {
       const _self = this
-      recommendApi
+      songApi
         .fetchNewestAlbums()
         .then(response => {
           _self.albums = response.data.albums
@@ -78,7 +78,7 @@ export default {
     },
     getAlbumDetail (id) {
       const _self = this
-      recommendApi
+      songApi
         .fetchAlbumDetail({ id })
         .then(response => {
           if (response.data.songs && response.data.songs.length) {

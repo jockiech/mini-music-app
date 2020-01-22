@@ -275,12 +275,13 @@ export default {
         text:before {
           content: '';
           display: inline-block;
-          vertical-align: middle;
+          // vertical-align: middle;
+          vertical-align: -0.125em;
           margin-right: 0.5em;
-          width: 2px;
+          width: 2.5px;
           height: 1em;
           background-color: #609344;
-          border-radius: 2px;
+          border-radius: 2.5px;
         }
         .i-collapse-item-arrow {
           -webkit-box-ordinal-group: 2;

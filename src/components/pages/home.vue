@@ -8,8 +8,8 @@
     <i-tabs color="#609344" v-model="current">
       <i-tab item-key="recommend" title="推荐"></i-tab>
       <i-tab item-key="songsheet" title="歌单"></i-tab>
-      <i-tab item-key="catelist" title="分类"></i-tab>
-      <i-tab item-key="ranklist" title="排行榜"></i-tab>
+      <i-tab item-key="catelist" title="分类榜单"></i-tab>
+      <i-tab item-key="ranklist" title="MV排行"></i-tab>
     </i-tabs>
     <recommend v-if="current === 'recommend'" />
     <songsheet v-else-if="current === 'songsheet'" />

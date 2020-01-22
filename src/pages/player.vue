@@ -6,7 +6,7 @@
 
 <script>
 import AudioPlayer from 'mpvue-audio'
-import playApi from '@/api/play'
+import songApi from '@/api/song'
 
 export default {
   data () {
@@ -20,7 +20,7 @@ export default {
   methods: {
     initTask () {
       const _self = this
-      playApi
+      songApi
         .fetchSongUrl({ id: _self.$route.query.id })
         .then(response => {
           _self.task.content_url = response.data.data[0].url
