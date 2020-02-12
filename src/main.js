@@ -14,12 +14,7 @@ import 'weapp-cookie'
 // import IviewUI from 'iview-mpvue'
 // Vue.use(IviewUI)
 
-// const baseUrl =
-//   process.env.NODE_ENV === 'development' ?
-//   'https://www.baidu.com' :
-//     'https://www.baidu.com'
-
-const baseUrl = 'http://localhost:3000'
+const baseUrl = process.env.VUE_API_BASE_URL
 
 axios.defaults.timeout = 30000
 axios.defaults.baseURL = baseUrl

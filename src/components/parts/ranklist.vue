@@ -2,13 +2,13 @@
   <view class="wrap-box">
     <text>热度排行</text>
     <scroll-view>
-      <i-card
-        :key="index"
-        v-for="(item, index) in topList"
-        :thumb="item.cover"
-        :title="`${item.name} · ${item.artistName}`"
-        :extra="`▶️\n${item.playCount.toLocaleString()}`"
-      />
+      <view :key="index"
+            v-for="(item, index) in topList"
+            @click="toMvDetail(item.id)">
+        <i-card :thumb="item.cover"
+                :title="`${item.name} · ${item.artistName}`"
+                :extra="`▶️\n${item.playCount.toLocaleString()}`" />
+      </view>
     </scroll-view>
   </view>
 </template>
@@ -71,6 +71,9 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+    toMvDetail (id) {
+      this.$router.push({ path: '/pages/mediaplayer', query: { id } })
     }
   },
   components: {

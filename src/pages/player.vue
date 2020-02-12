@@ -1,6 +1,6 @@
 <template>
   <div class="wrap-box">
-    <audio-player :task="task"></audio-player>
+    <audio-player :task="task" />
   </div>
 </template>
 

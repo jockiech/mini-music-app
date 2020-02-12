@@ -4,14 +4,22 @@
     <i-panel>
       <i-input
         :value="phone"
-        @blur="(event) => { phone = event.target.value }"
+        @blur="
+          event => {
+            phone = event.target.value
+          }
+        "
         type="number"
         title="📱手机号"
         placeholder="请输入手机号码"
       />
       <i-input
         :value="password"
-        @blur="(event) => { password = event.target.value }"
+        @blur="
+          event => {
+            password = event.target.value
+          }
+        "
         type="password"
         title="🔐密码"
         placeholder="请输入密码"
@@ -24,7 +32,7 @@
 <script>
 import iInput from 'iview-mpvue/dist/components/input/input'
 import iButton from 'iview-mpvue/dist/components/button/button'
-import loginApi from '@/api/login'
+import userApi from '@/api/user'
 export default {
   data () {
     return {
@@ -35,16 +43,19 @@ export default {
   methods: {
     loginSubmit () {
       const _self = this
-      loginApi.login({
-        phone: _self.phone,
-        password: _self.password
-      }).then(response => {
-        _self.$store.commit('setToken', response.data.token)
-        _self.$store.commit('setUserMeta', response.data.profile)
-        _self.$router.push({ path: '/pages/main' })
-      }).catch(error => {
-        console.error(error)
-      })
+      userApi
+        .login({
+          phone: _self.phone,
+          password: _self.password
+        })
+        .then(response => {
+          _self.$store.commit('setToken', response.data.token)
+          _self.$store.commit('setUserMeta', response.data.profile)
+          _self.$router.push({ path: '/pages/main' })
+        })
+        .catch(error => {
+          console.error(error)
+        })
     }
   },
   components: {

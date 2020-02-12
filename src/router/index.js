@@ -12,6 +12,9 @@ const routes = [
   },
   {
     path: '/pages/player'
+  },
+  {
+    path: '/pages/mediaplayer'
   }
 ]
 

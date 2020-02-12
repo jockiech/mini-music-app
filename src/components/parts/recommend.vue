@@ -9,7 +9,7 @@
         <img
           mode="aspectFill"
           :src="item.picUrl"
-          @click="getAlbumDetail(item.id)"
+          @click="toAlbumDetail(item.id)"
         />
       </swiper-item>
     </swiper>
@@ -76,7 +76,7 @@ export default {
           console.error(error)
         })
     },
-    getAlbumDetail (id) {
+    toAlbumDetail (id) {
       const _self = this
       songApi
         .fetchAlbumDetail({ id })
@@ -92,7 +92,7 @@ export default {
             })
           }
         })
-        .then(error => {
+        .catch(error => {
           console.error(error)
         })
     }
