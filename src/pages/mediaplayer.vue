@@ -2,7 +2,7 @@
   <div class="wrap-box">
     <video :src="videoUrl" :poster="videoInfo.cover" />
     <div class="title">
-      <span class="main-name">
+      <span class="main-name" :class="descFolded ? 'collapse' : ''">
         <span class="symbol">MV</span>
         <span>{{ videoInfo.name }}</span>
       </span>
@@ -45,7 +45,7 @@
 import icon from 'iview-mpvue/dist/components/icon/icon'
 import videoApi from '@/api/video'
 export default {
-  data () {
+  data() {
     return {
       videoUrl: '',
       videoInfo: {},
@@ -56,11 +56,11 @@ export default {
       isShare: false
     }
   },
-  mounted () {
+  mounted() {
     this.initPlayer()
   },
   methods: {
-    initPlayer () {
+    initPlayer() {
       const _self = this
       const init = async () => {
         await _self.getMvDetail()
@@ -68,7 +68,7 @@ export default {
       }
       init()
     },
-    getMvDetail () {
+    getMvDetail() {
       const _self = this
       return new Promise((resolve, reject) => {
         videoApi
@@ -82,7 +82,7 @@ export default {
           })
       })
     },
-    getMvUrl () {
+    getMvUrl() {
       const _self = this
       videoApi
         .fetchMvUrl({ id: _self.$route.query.id })
@@ -123,9 +123,19 @@ export default {
         border: 1px solid #609344;
         margin-right: 8px;
         padding: 2px;
-        font-size: 14px;
+        vertical-align: 3px;
+        font-size: 10px;
+        font-weight: bolder;
         color: #609344;
       }
+    }
+    .collapse {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    /deep/ .i-icon {
+      margin-top: 0.25em;
     }
   }
   .desc {
